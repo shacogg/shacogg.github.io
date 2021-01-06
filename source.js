@@ -342,14 +342,7 @@ function updateAndRedrawNodes(nodes, data, xScale, yScale, height, color, displa
   redrawNodes(nodes, xScale, yScale, height, color, display);
 }
 
-var chart = doSvgThing();
-var data1 = null;
-var data2 = null;
 
-var tooltip = d3.select("#tooltip")
-  .style("position", "fixed")
-  .style("background", "white")
-  .style("visibility", "visible")
 
 function update() {
   const p1 = processController(1);
@@ -367,5 +360,19 @@ function update() {
   	chart.nodes2, data2, chart.xScale, chart.yScale, chart.height, color2, p2.display);
 }
 
-update();
+var chart = null;
+var data1 = null;
+var data2 = null;
+var tooltip = null;
+
+window.addEventListener("load", function() {
+  chart = doSvgThing();
+  tooltip = d3.select("#tooltip")
+	  .style("position", "fixed")
+	  .style("background", "white")
+	  .style("visibility", "visible");
+  update();
+});
+
+
 
