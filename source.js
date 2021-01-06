@@ -338,7 +338,7 @@ function redrawNodes(nodes, xScale, yScale, height, color, display) {
 }
 
 function updateAndRedrawNodes(nodes, data, xScale, yScale, height, color, display) {
-	updateNodes(nodes, data);
+  updateNodes(nodes, data);
   redrawNodes(nodes, xScale, yScale, height, color, display);
 }
 
@@ -351,8 +351,8 @@ var tooltip = d3.select("#tooltip")
   .style("background", "white")
   .style("visibility", "visible")
 
-function update() {
-	const p1 = processController(1);
+function blueKaynForever() {
+  const p1 = processController(1);
   const p2 = processController(2);
   
   data1 = computeData(p1, chart.bins);
@@ -367,6 +367,5 @@ function update() {
   	chart.nodes2, data2, chart.xScale, chart.yScale, chart.height, color2, p2.display);
 }
 
-// redrawNodes(chartObj)
-update();
+blueKaynForever();
 
