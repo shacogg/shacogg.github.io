@@ -1,0 +1,200 @@
+/* https://coolors.co/ffcdb2-ffb4a2-e5989b-b5838d-6d6875 */
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: #FFCDB2;
+}
+
+#copyrightFooter {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+#year {
+  display: inline-block;
+}
+
+
+#tooltip {
+  padding: 0.5em;
+  background: #ffffff20;
+  border: 1px solid black;
+  box-shadow: 1px 1px black;
+}
+
+* {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+
+.container {
+  height: 100%;
+  background: #00000010;
+  box-shadow: 1px 1px black;
+  max-width: 900px;
+  margin: auto;
+  margin-bottom: 2em;
+  text-align: center;
+  margin-top: 2em;
+}
+
+.navbar {
+  text-align: center;
+  padding: 0.5em;
+  font-size: 2em;
+  border-bottom: 5px solid #444;
+  background: #333;
+  color: white;
+}
+
+#controller2, #controller2> .row > .header { 
+  color: #ffffff;
+  background: #222233;
+}
+
+#controller1, #controller1 > .row > .header {
+  color: #ffffff;
+  background: #4D2E34;
+}
+
+#controller1 > .row > .header > .items {
+  background: #E5989B;
+  color: white;
+}
+
+#controller2 > .row > .header > .items {
+  background: yellow;
+  color: white;
+}
+
+#controller2 .items label {
+  background: #9999ff;
+  color: #555;
+}
+
+#controller2 .slider {
+  background: #9999ff;
+}
+
+#controller2 .slider::-webkit-slider-thumb {
+  background: #ffffff; /* Green background */
+  box-shadow: -10000px 0 0 10000px #5555ff;
+}
+
+.controller * {
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+input[type="radio"], input[type="checkbox"], input[type="button"] {
+  display: none;
+}
+
+#controller2 input[type="radio"]:checked + label, 
+#controller2 input[type="checkbox"]:checked + label, 
+#controller2 input[type="button"]:active + label {
+  background: #5555ff;
+  color: white;
+}
+
+#controller1 input[type="radio"]:checked + label, 
+#controller1 input[type="checkbox"]:checked + label, 
+#controller1 input[type="button"]:active + label {
+  background: #c43136;
+  color: white;
+}
+
+#controller1  .items label:hover {
+  background: #d65c60;
+  color: white;
+}
+
+#controller2 .items label:hover {
+  background: #7777ff;
+  color: white;
+}
+
+.controller {
+  display: inline-block;
+  width: 46.5%;
+  padding: 1%;
+  text-align: center;
+  box-shadow: 2px 2px #222;
+  white-space: nowrap;
+  margin: 1% 0%;
+  overflow: hidden;
+}
+
+.controller:not(:last-child) {
+  margin-right: 1%;
+}
+
+.controllers {
+  height: 100%;
+  text-align: center;
+}
+
+
+
+.controller > .row {
+  background: #fff;
+  display: flex;
+}
+
+.controller > .row > .header {
+  width: 66.66%;
+  display: inline-block;
+  text-align: left;
+  text-shadow: 1px 1px black;
+  white-space: nowrap;
+}
+
+.controller > .row:not(:last-child) {
+  margin: 0em 0em 0.5em 0em;
+}
+
+.items {
+  display: flex;
+  width: 451px;
+  height: 15px;
+  background: #E5989B;
+  color: white;
+  /*border: 1px solid #222222;*/
+  box-shadow: 2px 2px black;
+}
+
+.items label {
+  width: 100%;
+  display: inline-block;
+  color: #b5838d;  
+}
+
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+  background: #E5989B;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  box-shadow: -10000px 0 0 10000px #c43136;
+  width: 15px;
+  height: 15px;
+  padding: 0;
+  margin: 0;
+  background: #ffffff; /* Green background */
+  cursor: pointer; /* Cursor on hover */
+}
