@@ -351,7 +351,7 @@ var tooltip = d3.select("#tooltip")
   .style("background", "white")
   .style("visibility", "visible")
 
-function blueKaynForever() {
+function update() {
   const p1 = processController(1);
   const p2 = processController(2);
   
@@ -367,5 +367,5 @@ function blueKaynForever() {
   	chart.nodes2, data2, chart.xScale, chart.yScale, chart.height, color2, p2.display);
 }
 
-blueKaynForever();
+update();
 
