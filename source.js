@@ -92,14 +92,35 @@ function getSelectedRadio(name) {
   }
 }
 
+function setSelectedRadio(name, value) {
+  var radios = document.getElementsByName(name);
+  for (var radio of radios) {
+    if (radio.value == value) {
+      radio.checked = true;
+    } else {
+      radio.checked = false;
+    }
+  }
+}
+
 function getSliderValue(id) {
 	const slider = document.getElementById(id);
   return parseInt(slider.value);
 }
 
+function setSliderValue(id, value) {
+  const slider = document.getElementById(id);
+  slider.value = value;
+}
+
 function getCheckboxChecked(id) {
 	const checkbox = document.getElementById(id);
   return checkbox.checked;
+}
+
+function setCheckboxChecked(id, checked) {
+	const checkbox = document.getElementById(id);
+  checkbox.checked = checked;
 }
 
 function setSliderLimits(id, min, max) {
@@ -123,6 +144,42 @@ function getCopiesForCost(cost) {
 function setHeader(id, label, curr, max) {
 	var header = document.getElementById(id);
   header.textContent = label + " (" + curr + " of " + max + ")";
+}
+
+function copyRadio(src, dst) {
+    const selected = getSelectedRadio(src);
+    setSelectedRadio(dst, selected);
+}
+
+function copySlider(src, dst) {
+  const value = getSliderValue(src);
+  setSliderValue(dst, value);
+}
+
+function copyCheckbox(src, dst) {
+  const checked = getCheckboxChecked(src);
+  setCheckboxChecked(dst, checked);
+}
+
+function copyControls(src, dst) {
+  for (var radio of ["level", "star", "cost"]) {
+    copyRadio(radio + src, radio + dst);
+  }
+
+  // Update slider limits with new radio settings.
+  processController(dst);
+
+  for (var slider of ["owned", "taken", "other"]) {
+    copySlider(slider + src, slider + dst);
+  }
+
+  copyCheckbox("display" + src, "display" + dst);
+
+  // Update the data.
+  processController(dst);
+
+  // Redraw everything.
+  update();
 }
 
 function processController(controller) {
@@ -186,11 +243,11 @@ function computeData(params, bins) {
 
 
 function copy1() {
-	console.log("copy1 is not implemented");
+  copyControls("1", "2");
 }
 
 function copy2() {
-	console.log("copy2 is not implemented");
+  copyControls("2", "1");
 }
 
 function doSvgThing() {
@@ -339,8 +396,6 @@ function updateAndRedrawNodes(nodes, data, xScale, yScale, height, color, displa
   redrawNodes(nodes, xScale, yScale, height, color, display);
 }
 
-
-
 function update() {
   const p1 = processController(1);
   const p2 = processController(2);
@@ -356,6 +411,8 @@ function update() {
   updateAndRedrawNodes(
   	chart.nodes2, data2, chart.xScale, chart.yScale, chart.height, color2, p2.display);
 }
+
+
 
 var chart = null;
 var data1 = null;
