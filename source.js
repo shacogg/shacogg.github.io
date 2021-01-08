@@ -29,7 +29,7 @@ function factorial(x) {
 function choose(n, k) {
 	if (n == k) return 1;
   if (k == 0) return 1;
-  
+
 	return factorial(n) / (factorial(k) * factorial(n - k));
 }
 
@@ -50,10 +50,10 @@ function cdf(k, n, m, r, l, c, memo) {
   if (k > n) return 0.0;
 	if (k <= 0) return 1.0;
   if (r == 0) return 0.0;
-  
+
   console.assert(n >= 0, "n < 0");
   console.assert(r >= 0, "r < 0");
-  
+
   const key_obj = {k:k, n:n, m:m, r:r, l:l, c:c};
   const key = JSON.stringify(key_obj);
   if (!memo.has(key)) {
@@ -125,30 +125,30 @@ function setHeader(id, label, curr, max) {
   header.textContent = label + " (" + curr + " of " + max + ")";
 }
 
-function processController(controller) {  
+function processController(controller) {
   const level = getSelectedRadio("level" + controller);
   const starLevel = getSelectedRadio("star" + controller);
   const cost = getSelectedRadio("cost" + controller);
-  
+
   const copiesForStarLevel = getCopiesForStarLevel(starLevel);
   const copiesForCost = getCopiesForCost(cost);
   const championsForCost = getChampionsForCost(cost);
- 
+
   setSliderLimits("owned" + controller, 0, copiesForStarLevel);
   setSliderLimits("taken" + controller, 0, copiesForCost);
   setSliderLimits("other" + controller, 0, copiesForCost * (championsForCost - 1));
 
   const owned = getSliderValue("owned" + controller);
   setHeader("headerOwned" + controller, "Owned", owned, copiesForStarLevel);
-  
+
   const taken = getSliderValue("taken" + controller);
   setHeader("headerTaken" + controller, "Taken", taken, copiesForCost);
-  
+
   const other = getSliderValue("other" + controller);
   setHeader("headerOther" + controller, "Other", other, copiesForCost * (championsForCost - 1));
-  
+
   const display = getCheckboxChecked("display" + controller);
-  
+
   return {
   	level: level,
     starLevel: starLevel,
@@ -169,18 +169,18 @@ function processController(controller) {
 function computeData(params, bins) {
 	const copiesNeeded = getCopiesForStarLevel(params.starLevel);
   const k = Math.max(0, copiesNeeded - params.owned);
-  
+
   const n = Math.max(0, getCopiesForCost(params.cost) - params.owned - params.taken);
-  
+
   const otherCopies = getCopiesForCost(params.cost) * (getChampionsForCost(params.cost) - 1);
   const m = Math.max(0, otherCopies - params.other);
-  
-  
+
+
   const l = params.level;
-  
+
   const c = params.cost;
-  
-	
+
+
 	return generateData(k, n, m, l, c, bins);
 }
 
@@ -202,7 +202,7 @@ function doSvgThing() {
   .attr('transform', `translate(${margin}, ${margin})`)
   .attr('id', "thechart");
   const height = 400;
-  
+
 	var width = container.offsetWidth - margin * 2;
   const bins = 60;
   width = Math.floor(width / bins) * bins;
@@ -223,11 +223,11 @@ const xScale = d3.scaleLinear()
 chart.append('g')
   .attr('transform', `translate(0, ${height})`)
   .call(d3.axisBottom(xScale));
-  
+
   svg.attr("width", width + 2 * margin);
 	svg.attr("height", height + 2 * margin);
-  
-  
+
+
   var data = [];
   var data1 = [];
 	for (var b = 0; b < bins; b++) {
@@ -251,7 +251,7 @@ chart.append('g')
     .on("mouseenter", mouseover)
     .on("mousemove", mousemove)
     .on("mouseleave", mouseout);
-  
+
   var nodes1 = chart.selectAll()
     .data(data1)
     .enter()
@@ -262,7 +262,7 @@ chart.append('g')
 
   lmao(nodes);
 	lmao(nodes1);
-  
+
   return {
   	xScale: xScale,
     yScale: yScale,
@@ -290,7 +290,7 @@ function mouseout(d, i) {
 function setTooltipValues(rolls, p1, p2) {
 	var rollsDiv = document.getElementById('tooltipRolls');
 	rollsDiv.textContent = "rolls = " + rolls;
-  
+
   function setProbabilityValue(name, p, divId, displayId) {
   	var div = document.getElementById(divId);
     const pStr = Number.parseFloat(p* 100).toFixed(2);
@@ -298,7 +298,7 @@ function setTooltipValues(rolls, p1, p2) {
    	const display = getCheckboxChecked(displayId);
     div.style.display = display ? 'block' : 'none';
   }
-  
+
   setProbabilityValue("1", p1, "tooltipProb1", "display1");
   setProbabilityValue("2", p2, "tooltipProb2", "display2");
 }
@@ -308,7 +308,7 @@ function lookupRolls(rolls, data) {
 	for (const tuple of data) {
   	if (tuple.x == rolls) return tuple.y;
   }
-  
+
   console.log(rolls, data[12]);
 }
 
@@ -318,11 +318,11 @@ function mousemove(d, i) {
   console.log(tooltip.offsetHeight);
 	tooltip.style("left", d.x + dx + "px");
   tooltip.style("top", d.y - dy + "px");
-  
+
   const rolls = i.x;
   const p1 = lookupRolls(rolls, data1);
   const p2 = lookupRolls(rolls, data2);
-  
+
   setTooltipValues(rolls, p1, p2);
 }
 
@@ -347,13 +347,13 @@ function updateAndRedrawNodes(nodes, data, xScale, yScale, height, color, displa
 function update() {
   const p1 = processController(1);
   const p2 = processController(2);
-  
+
   data1 = computeData(p1, chart.bins);
   data2 = computeData(p2, chart.bins);
-  
+
   const color1 = '#ff000055';
   const color2 = '#0000ff55';
-  
+
   updateAndRedrawNodes(
   	chart.nodes1, data1, chart.xScale, chart.yScale, chart.height, color1, p1.display);
   updateAndRedrawNodes(
@@ -369,10 +369,6 @@ window.addEventListener("load", function() {
   chart = doSvgThing();
   tooltip = d3.select("#tooltip")
 	  .style("position", "fixed")
-	  .style("background", "white")
-	  .style("visibility", "visible");
+	  .style("background", "white");
   update();
 });
-
-
-
