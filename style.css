@@ -1,38 +1,40 @@
-/* https://coolors.co/ffcdb2-ffb4a2-e5989b-b5838d-6d6875 */
+/* https://coolors.co/50514f-f25f5c-ffe066-247ba0-70c1b3 */
+
+
 
 :root {
-  --c1-fg: #000000;
-  --c1-bg: #ffcccc;
-  --c1-off-fg: #000000;
-  --c1-off-bg: #cccccc;
+  --c1-fg: #ffffff;
+  --c1-bg: #F25F5C;
+  --c1-off-fg: #50514f;
+  --c1-off-bg: #F7A2A1;
   --c1-on-fg: #ffffff;
-  --c1-on-bg: #000000;
+  --c1-on-bg: #AA100E;
   --c1-hover-fg: #ffffff;
-  --c1-hover-bg: #777777;
-  --c1-plot: #ff333333;
+  --c1-hover-bg: #f15855;
+  --c1-plot: #f25f5c;
 
-  --c2-fg: #000000;
-  --c2-bg: #ccccff;
-  --c2-off-fg: #000000;
-  --c2-off-bg: #cccccc;
+  --c2-fg: #ffffff;
+  --c2-bg: #247BA0;
+  --c2-off-fg: #50514f;
+  --c2-off-bg: #85cae5;
   --c2-on-fg: #ffffff;
-  --c2-on-bg: #000000;
+  --c2-on-bg: #174d64;
   --c2-hover-fg: #ffffff;
-  --c2-hover-bg: #777777;
-  --c2-plot: #3333ff33;
+  --c2-hover-bg: #2d99c8;
+  --c2-plot: #247ba0;
 
   --fg: #ffffff;
-  --bg: #FFCDB2;
+  --bg: #c2c2c1;
 
   --container-fg: #000000;
-  --container-bg: #ffffff;
+  --container-bg: #ebebea;
 
   --tooltip-fg: #000000;
   --tooltip-bg: #ffffff;
 
   --header-fg: #ffffff;
-  --header-bg: #333333;
-  --header-border: #000000;
+  --header-bg: #50514f;
+  --header-border: #1f1f1e;
 }
 
 html, body {
