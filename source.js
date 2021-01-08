@@ -396,6 +396,10 @@ function updateAndRedrawNodes(nodes, data, xScale, yScale, height, color, displa
   redrawNodes(nodes, xScale, yScale, height, color, display);
 }
 
+function getCSSVariable(name) {
+  return getComputedStyle(document.body).getPropertyValue(name);
+}
+
 function update() {
   const p1 = processController(1);
   const p2 = processController(2);
@@ -403,8 +407,8 @@ function update() {
   data1 = computeData(p1, chart.bins);
   data2 = computeData(p2, chart.bins);
 
-  const color1 = '#ff000055';
-  const color2 = '#0000ff55';
+  const color1 = getCSSVariable("--c1-plot");
+  const color2 = getCSSVariable("--c2-plot");
 
   updateAndRedrawNodes(
   	chart.nodes1, data1, chart.xScale, chart.yScale, chart.height, color1, p1.display);
