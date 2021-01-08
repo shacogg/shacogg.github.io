@@ -308,14 +308,11 @@ function lookupRolls(rolls, data) {
 	for (const tuple of data) {
   	if (tuple.x == rolls) return tuple.y;
   }
-
-  console.log(rolls, data[12]);
 }
 
 function mousemove(d, i) {
 	const dx = 20;
   const dy = 0;
-  console.log(tooltip.offsetHeight);
 	tooltip.style("left", d.x + dx + "px");
   tooltip.style("top", d.y - dy + "px");
 
